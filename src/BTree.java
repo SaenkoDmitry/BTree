@@ -37,30 +37,12 @@ public class BTree extends Application {
     {
         T = new Tree();
         Gson gsonPretty = new GsonBuilder().setPrettyPrinting().create();
-        /*List < Item > description = Arrays.asList(new Item("dfsdfs"), new Item("dfsdfs dsfs"), new Item("dfsdfs fdgdsfg sefsd"));
-        T.insert(7, new Field("www.github.com", "fsdfsd", description));
-        T.insert(2, new Field("www.google.com", "fsdffdsfssd", description));
-        T.insert(1, new Field("www.yan
-        dex.ru", "fsdsdfsd", description));
-        T.insert(17, new Field("www.habrahabr.ru", "fsddsffsd", description));*/
         Gson gson = new Gson();
         jsonObject = gson.fromJson(new FileReader("KeepNote.json"), Field[].class);
         //System.out.println(gsonPretty.toJson(jsonObject));
         for (int i = 0; i < jsonObject.length; i++) {
             T.insert(jsonObject[i].name.hashCode(), jsonObject[i]);
         }
-        /*T.insert(8);
-        T.insert(3);
-        T.insert(4);
-        T.insert(5);
-        T.insert(6);
-        T.insert(9);
-        T.insert(11);
-        T.insert(20);
-        T.insert(15);
-        T.insert(18);
-        T.insert(25);
-        T.insert(50);*/
         T.print();
         int size = 50;
         HashTable H = new HashTable(size, 5);
