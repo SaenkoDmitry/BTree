@@ -51,7 +51,8 @@ public class HashTable {
     public DataItem delete(int key)
     {
         int hashVal = hashFunc(key);
-        while(hashArray[hashVal] != null)
+        int i = numTry;
+        while(hashArray[hashVal] != null && i != 0)
         {
             if(hashArray[hashVal].getKey() == key)
             {
@@ -59,9 +60,12 @@ public class HashTable {
                 hashArray[hashVal] = nonItem;
                 return temp;
             }
+            i--;
             ++hashVal;
             hashVal %= arraySize;
         }
+        if(i == 0)
+            System.out.println("Node not found");
         return null;
     }
     public void displayTable()
@@ -82,13 +86,16 @@ public class HashTable {
     public DataItem find(int key)
     {
         int hashVal = hashFunc(key);
-        while(hashArray[hashVal] != null)
+        int i = numTry;
+        while(hashArray[hashVal] != null && i != 0)
         {
             if(hashArray[hashVal].getKey() == key)
                 return hashArray[hashVal];
             ++hashVal;
             hashVal %= arraySize;
         }
+        if(i == 0)
+            System.out.println("Node not found");
         return null;
     }
 }
